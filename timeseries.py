@@ -41,25 +41,25 @@ data_dict["p"] = (data_arr[:,8]).astype(float)
 #################################              Plotting Loop               ############################################################
 #######################################################################################################################################
 name = ""
-for i in var:
+for i in variables:
     name += i + "_"
     
 dt = np.linspace(0,len(data_dict["time"])-1,seperation)
 dt = np.round(dt).astype(int)
 
-fig,ax = plt.subplots(4,1, sharex=True,figsize=(100,20))
+fig,ax = plt.subplots(4,1, sharex=True,figsize=(100,40))
     
 for i in range(seperation-1):
     for j,var in enumerate(variables):
 
         interval = np.arange(dt[i], dt[i+1],1)
-        ax[j].plot(interval,data_dict[var][dt[i]:dt[i+1]],linewidth=0.1)
-        locs = np.arange(dt[i],dt[i+1], 5000)
+        ax[j].plot(interval,data_dict[var][dt[i]:dt[i+1]],linewidth=0.1,color = "k")
+        locs = np.arange(dt[i],dt[i+1], 4000)
         
         plt.xticks(locs, data_dict["time"][locs])
         plt.xlabel("Date / Time")
         ax[j].set_ylabel(var +" in "+ units[j])
-        ax[j].set_ylim(np.nanquantile(data_dict[var],0.05),np.nanquantile(data_dict[var],0.95))
+        #ax[j].set_ylim(np.nanquantile(data_dict[var],0.05),np.nanquantile(data_dict[var],0.95))   ####maybe find a better solution than quantile limits
         plt.xlim(interval[0],interval[-1])
         
     plt.tight_layout()
