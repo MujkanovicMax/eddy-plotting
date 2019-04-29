@@ -41,7 +41,7 @@ from matplotlib.ticker import (MultipleLocator, FormatStrFormatter,AutoMinorLoca
 #################################              Plotting Loop               ############################################################
 #######################################################################################################################################
 
-def plotTimeseries(data_dict, variables, units, seperation, output_path, test=0):
+def plotTimeseries(data_dict, variables, units, seperation, output_path, test=0, lw = 0.1):
 
     name = ""
     for i in variables:
@@ -58,7 +58,7 @@ def plotTimeseries(data_dict, variables, units, seperation, output_path, test=0)
             for j,var in enumerate(variables):
 
                 interval = np.arange(dt[i], dt[i+1],1)
-                ax[j].plot(interval,data_dict[var][dt[i]:dt[i+1]],linewidth=0.1,color = "k")
+                ax[j].plot(interval,data_dict[var][dt[i]:dt[i+1]],linewidth=lw,color = "k")
                 locs = np.arange(dt[i],dt[i+1], 4000)
                 
                 plt.xticks(locs, data_dict["time"][locs])
@@ -80,7 +80,7 @@ def plotTimeseries(data_dict, variables, units, seperation, output_path, test=0)
             for j,var in enumerate(variables):
 
                 interval = np.arange(dt[i], dt[i+1],1)
-                ax[j].plot(interval,data_dict[var][dt[i]:dt[i+1]],linewidth=0.1,color = "k")
+                ax[j].plot(interval,data_dict[var][dt[i]:dt[i+1]],linewidth=lw,color = "k")
                 locs = np.arange(dt[i],dt[i+1], 4000)
                 
                 plt.xticks(locs, data_dict["time"][locs])
